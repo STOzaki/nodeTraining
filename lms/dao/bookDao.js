@@ -1,7 +1,7 @@
 var db = require('./db');
 
 exports.getAllBooks = function(cb){
-    db.query('select * from lms.book', function(err, result) {
+    db.query('select * from librarytest.tbl_book', function(err, result) {
         cb(err, result);
       });
 };
@@ -27,7 +27,7 @@ exports.removeBook = function(bookId, cb){
     db.beginTransaction(function(err){
         if(err) cb(err, null);
     
-        db.query('delete from lms.book where book_id = ?', [bookId], function(err, res){
+        db.query('delete from librarytest.tbl_book where bookid = ?', [bookId], function(err, res){
           if(err){
             db.rollback(function(err, res){
               cb(err, res);
